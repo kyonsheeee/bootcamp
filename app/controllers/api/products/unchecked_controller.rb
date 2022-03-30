@@ -20,9 +20,9 @@ class API::Products::UncheckedController < API::BaseController
                          .order_for_not_wip_list
                          .page(params[:page])
                 end
-    @latest_product_submitted_just_5days = @products.find { |product| product.elapsed_days == 5 }
-    @latest_product_submitted_just_6days = @products.find { |product| product.elapsed_days == 6 }
-    @latest_product_submitted_over_7days = @products.find { |product| product.elapsed_days >= 7 }
+    @all_submitted_products = @products
+    .group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
+    .transform_values(&:first)
   end
 
   private
