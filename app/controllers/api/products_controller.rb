@@ -8,6 +8,6 @@ class API::ProductsController < API::BaseController
                 .list
                 .order_for_list
                 .page(params[:page])
-    @products = @products.joins(:user).where(users: {company_id:params[:company_id]}) if params[:company_id]
+    @products = @products.joins(:user).where(users: { company_id: params[:company_id] }) if params[:company_id]
   end
 end
