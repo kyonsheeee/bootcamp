@@ -88,4 +88,11 @@ class CurrentUserTest < ApplicationSystemTestCase
     assert_text '企業で利用しているアドバイザー、研修生は登録。'
     assert_text '就職した卒業生、メンターは個人情報にあたるため、希望者のみ登録。'
   end
+
+  test 'not mentors and advisors and graduates not add company registration' do
+    visit_with_auth '/current_user/edit', 'kimura'
+    assert_no_text '所属なし'
+    assert_no_text '企業で利用しているアドバイザー、研修生は登録。'
+    assert_no_text '就職した卒業生、メンターは個人情報にあたるため、希望者のみ登録。'
+  end
 end
