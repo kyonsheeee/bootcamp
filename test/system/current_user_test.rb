@@ -62,4 +62,30 @@ class CurrentUserTest < ApplicationSystemTestCase
     visit_with_auth '/current_user/edit', 'senpai'
     assert_no_text 'フィヨルドブートキャンプを卒業した自分はどうなっていたいかを教えてください'
   end
+
+  test 'mentors and advisors and graduates add company registration' do
+    visit_with_auth '/current_user/edit', 'mentormentaro'
+    assert_text '企業'
+    within '.choices__inner' do
+      assert_text '所属なし'
+    end
+    assert_text '企業で利用しているアドバイザー、研修生は登録。'
+    assert_text '就職した卒業生、メンターは個人情報にあたるため、希望者のみ登録。'
+
+    visit_with_auth '/current_user/edit', 'advijirou'
+    assert_text '企業'
+    within '.choices__inner' do
+      assert_text '所属なし'
+    end
+    assert_text '企業で利用しているアドバイザー、研修生は登録。'
+    assert_text '就職した卒業生、メンターは個人情報にあたるため、希望者のみ登録。'
+
+    visit_with_auth '/current_user/edit', 'sotugyou'
+    assert_text '企業'
+    within '.choices__inner' do
+      assert_text '所属なし'
+    end
+    assert_text '企業で利用しているアドバイザー、研修生は登録。'
+    assert_text '就職した卒業生、メンターは個人情報にあたるため、希望者のみ登録。'
+  end
 end
