@@ -45,11 +45,6 @@
                   :href='`/admin/companies/${company.id}/edit`'
                 )
                   i.fas.fa-pen
-              li
-                a.a-button.is-sm.is-danger.is-icon.js-delete(
-                  @click='destroy(company)'
-                )
-                  i.fas.fa-trash-alt
   nav.pagination(v-if='totalPages > 1')
     pager(v-bind='pagerProps')
 </template>
