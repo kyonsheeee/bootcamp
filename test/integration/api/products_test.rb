@@ -42,4 +42,15 @@ class API::ProductsTest < ActionDispatch::IntegrationTest
         headers: { 'Authorization' => "Bearer #{token}" }
     assert_response :ok
   end
+
+  test 'GET /api/products.json?company_id=362477616' do
+    company = companies(:company4)
+    get api_products_path(company_id:company.id,format: :json)
+    assert_response :unauthorized
+
+    token = create_token('kimura', 'testtest')
+    get api_products_path(company_id:company.id,format: :json),
+        headers: { 'Authorization' => "Bearer #{token}" }
+    assert_response :ok
+  end
 end
