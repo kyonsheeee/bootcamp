@@ -118,7 +118,8 @@
         :checkerName='product.checker_name',
         :checkerAvatar='product.checker_avatar',
         :currentUserId='currentUserId',
-        :productId='product.id'
+        :productId='product.id',
+        :parentComponent='"product"'
       )
 </template>
 <script>
