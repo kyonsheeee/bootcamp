@@ -120,6 +120,9 @@ export default {
     },
     daimyoClass() {
       return { 'is-daimyo': this.currentUser.daimyo }
+    },
+    productCheckerId() {
+      return this.$store.getters.productCheckerId
     }
   },
   created() {
@@ -216,13 +219,15 @@ export default {
         .catch((error) => {
           console.warn(error)
         })
-      this.checker(
-        this.commentableId,
-        this.currentUserId,
-        '/api/products/checker',
-        'PATCH',
-        this.token()
-      )
+      if (this.productCheckerId === null) {
+        this.checkProduct(
+          this.commentableId,
+          this.currentUserId,
+          '/api/products/checker',
+          'PATCH',
+          this.token()
+        )
+      }
     },
     deleteComment(id) {
       fetch(`/api/comments/${id}.json`, {
