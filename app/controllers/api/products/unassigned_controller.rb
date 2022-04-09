@@ -11,7 +11,6 @@ class API::Products::UnassignedController < API::BaseController
                 .order_for_not_wip_list
     @all_submitted_products = @products
                               .group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
-                              .transform_values(&:first)
   end
 
   def counts
