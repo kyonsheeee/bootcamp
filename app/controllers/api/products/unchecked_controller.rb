@@ -8,10 +8,10 @@ class API::Products::UncheckedController < API::BaseController
     @products = case @target
                 when 'unchecked_all'
                   Product.unchecked
-                            .not_wip
-                            .list
-                            .order_for_not_wip_list
-                            .page(params[:page])
+                         .not_wip
+                         .list
+                         .order_for_not_wip_list
+                         .page(params[:page])
                 when 'unchecked_no_replied'
                   Product.unchecked_no_replied_products(current_user.id)
                          .unchecked

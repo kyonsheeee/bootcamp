@@ -10,7 +10,7 @@ class API::Products::UnassignedController < API::BaseController
                 .list
                 .order_for_not_wip_list
     @products_grouped_by_elapsed_days = @products
-                              .group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
+                                        .group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
   end
 
   def counts
