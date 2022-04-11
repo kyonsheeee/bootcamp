@@ -52,4 +52,12 @@ class Product::UnassignedTest < ApplicationSystemTestCase
     assert_equal "#{oldest_product.practice.title}の提出物", titles.last
     assert_equal oldest_product.user.login_name, names.last
   end
+
+  test 'display elapsed days label' do
+    visit_with_auth '/products/unassigned', 'komagata'
+    assert_text '0日経過'
+    assert_text '5日経過'
+    assert_text '6日経過'
+    assert_text '7日以上経過'
+  end
 end
