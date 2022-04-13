@@ -8,7 +8,6 @@ class API::ProductsController < API::BaseController
                 .list
                 .order_for_list
                 .page(params[:page])
-    @products_grouped_by_elapsed_days = @products
-                                        .group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
+    @products_grouped_by_elapsed_days = @products.group_by { |product| product.elapsed_days >= 7 ? 7 : product.elapsed_days }
   end
 end
